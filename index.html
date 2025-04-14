@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Showcase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">CSS<span>SHOWCASE</span></div>
+            <div class="meatball-menu" id="menuToggle">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#grid">GRID</a></li>
+                <li><a href="#flex">FLEX</a></li>
+                <li><a href="#video">VIDEO</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 id="greeting">Master CSS Layouts</h1>
+            <p id="greeting2">Responsive Web Design with Modern Techniques</p>
+            <p class="description">
+                    This is a showcase of CSS techniques for creating responsive layouts.
+                    <br>It includes grid, flexbox, and video examples.
+                    <br>Click the buttons below to explore each section.
+                    <br>Enjoy your journey into the world of CSS!
+                    <br>Happy coding! <br>
+            </p>
+            <span>
+                <a href="#grid" class="glow-on-hover">Get Started</a>
+            </span>
+        </div>
+    </section>
+
+    <section id="grid" class="section">
+        <h2>Responsive Grid Layout</h2>
+        <div class="grid-container">
+            <div class="grid-item"><img src="/images/pic1.jpg" alt="CSS Grid Example"></div>
+            <div class="grid-item"><img src="/images/pic2.jpg" alt="CSS Grid Example"></div>
+            <div class="grid-item"><img src="/images/pic3.jpg" alt="CSS Grid Example"></div>
+            <div class="grid-item"><img src="/images/pic4.jpg" alt="CSS Grid Example"></div>
+            <div class="grid-item"><img src="/images/pic5.jpg" alt="CSS Grid Example"></div>
+        </div>
+    </section>
+
+    <section id="flex" class="section" style="background: url(/image/pic5.jpg);">
+        <h2>Flexbox Layout</h2>
+        <div class="flex-container">
+            <div class="flex-item" style="background-color: brown;">Item 1</div>
+            <div class="flex-item" style="background-color: blueviolet;">Item 2</div>
+            <div class="flex-item" style="background-color: blue;">Item 3</div>
+            <div class="flex-item" style="background-color: bisque;">Item 4</div>
+            <div class="flex-item" style="background-color: aqua;">Item 5</div>
+        </div>
+    </section>
+
+    <section id="video" class="section">
+        <h2>Responsive Videos</h2>
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/3elGSZSWTbM?si=cBhFVNrEbrquupSD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" r</div>eferrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/n9yI6fjkrfE?si=1hUyMjzSxzgwe85o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origi</section>n-when-cross-origin" allowfullscreen></iframe>            </div>
+        </div>
+    </section>
+    <section class="section tips">
+        <h2>CSS Responsive Principles</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <h3>Fluid Layouts</h3>
+                <p>Uses percentages (%) or viewport units (vw, vh) to create flexible, screen-adaptive designs.</p>
+            </div>
+            <div class="tip-card">
+                <h3>Flexible Images</h3>
+                <p>Scale responsively with max-width: 100% and height: auto to prevent layout breaks.</p>
+            </div>
+            <div class="tip-card">
+                <h3>Media Queries</h3>
+                <p> Apply CSS rules conditionally (e.g., @media (min-width: 768px)) for device-specific styling.</p>
+            </div>
+            <div class="tip-card">
+                <h3>Viewport Meta</h3>
+                <p>Ensures proper mobile rendering with <br>meta name="viewport" content="width=device-width, initial-scale=1"</p>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <p>© 2025 Responsive Cascade Stylesheet</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const navItems = document.querySelectorAll('.nav-links a');
+        
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navLinks.classList.toggle('active');
+            });
+        
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = item.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    navLinks.classList.remove('active');
+                    
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            });
+        
+            menuToggle.addEventListener('mouseenter', () => {
+                gsap.to('.dot', {
+                    duration: 0.3,
+                    scaleX: 1.2,
+                    stagger: 0.1,
+                    ease: 'power2.out'
+                });
+            });
+        
+            menuToggle.addEventListener('mouseleave', () => {
+                gsap.to('.dot', {
+                    duration: 0.3,
+                    scaleX: 1,
+                    ease: 'power2.out'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
